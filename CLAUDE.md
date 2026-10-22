@@ -8,9 +8,11 @@
 
 ## Saving work
 - When the user says "save", "zip", or is wrapping up, run
-  `./save_work.sh <project-name>` (or `--all`).
-- Then remind the user the container is temporary and offer to either send
-  the zip to them (SendUserFile) or upload it to their Google Drive.
+  `./save_work.sh <project-name>` (or `--all`). It zips the work into
+  `saved/`, commits the zip and pushes it to GitHub.
+- Report whether the push succeeded. If it failed, say plainly the zip is
+  only in this temporary session. Optionally offer an extra copy via
+  SendUserFile or Google Drive.
 - Before a session ends with unsaved changes, suggest saving.
 - Full human-readable guide: `HOW_TO_SAVE_WORK.md`.
 

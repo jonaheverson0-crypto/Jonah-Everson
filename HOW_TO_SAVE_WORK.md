@@ -48,12 +48,17 @@ This creates a dated file such as
 older versions are kept. (Bulky folders like `node_modules` and `.venv` are
 skipped — they can be reinstalled.)
 
+The script then **commits the zip and pushes it to GitHub automatically**, so
+it is saved permanently in this repository. If the push fails it says so —
+the zip is then only in this temporary session until you push it.
+(Run `NO_PUSH=1 ./save_work.sh my-project-name` to make a zip without pushing.)
+
 Or just tell Claude: **"Save my work."**
 
-## 5. Get the zip OUT of the container (important!)
+## 5. Extra copies (optional)
 
-The `saved/` folder is still inside the temporary container. Before you
-leave, do one of these:
+Once the push succeeds, the zip is safe on GitHub in `saved/`. For an extra
+copy you can also:
 
 - **Download it:** ask Claude to "send me the zip" — it appears as a file you
   can download in the Claude app.
@@ -61,15 +66,15 @@ leave, do one of these:
 
 ## 6. Pick up later
 
-Start a new session, upload the zip (or ask Claude to fetch it from Drive),
-then:
+Start a new session with this repository — the zips are already in
+`saved/`. Then:
 
 ```bash
-cd work && unzip /path/to/my-project-name_2026-10-22_1430.zip
+cd work && unzip ../saved/my-project-name_2026-10-22_1430.zip
 ```
 
 ## Quick checklist before ending a session
 
 - [ ] All files are inside `work/<project-name>/`
 - [ ] Ran `./save_work.sh <project-name>` (or asked Claude to save)
-- [ ] Downloaded the zip or uploaded it to Google Drive
+- [ ] The script said "Pushed ... to GitHub" (not "PUSH FAILED")
